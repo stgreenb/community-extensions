@@ -11,7 +11,7 @@ export const TYPES = [
   "themes",
   "engines",
   "transports",
-  "autocompletes",
+  "autocomplete",
 ];
 
 export const TYPE_LABELS = {
@@ -19,7 +19,7 @@ export const TYPE_LABELS = {
   themes: "Themes",
   engines: "Engines",
   transports: "Transports",
-  autocompletes: "Autocompletes",
+  autocomplete: "Autocomplete",
 };
 
 export const TYPE_SINGULAR = {
@@ -27,7 +27,7 @@ export const TYPE_SINGULAR = {
   themes: "theme",
   engines: "engine",
   transports: "transport",
-  autocompletes: "autocomplete",
+  autocomplete: "autocomplete",
 };
 
 export const IMG_EXT = /\.(png|jpe?g|gif|webp|avif|svg)$/i;
