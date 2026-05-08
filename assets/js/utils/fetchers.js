@@ -64,13 +64,17 @@ const github = {
     if (t && (await jsdelivrTreeLooksSane(loc.path, t))) return t;
     return await _githubApiTree(loc.path);
   },
-  rawUrl: (loc, tree, path) =>
-    "https://cdn.jsdelivr.net/gh/" +
-    loc.path +
-    "@" +
-    ((tree && tree.ref) || "HEAD") +
-    "/" +
-    path.replace(/^\/+/, ""),
+  rawUrl: (loc, tree, path) => {
+    const url =
+      "https://cdn.jsdelivr.net/gh/" +
+      loc.path +
+      "@" +
+      ((tree && tree.ref) || "HEAD") +
+      "/" +
+      path.replace(/^\/+/, "");
+    const v = tree && tree.sha ? encodeURIComponent(tree.sha) : "";
+    return v ? url + "?v=" + v : url;
+  },
   sourceUrl: (loc, _tree, extPath) =>
     loc.webUrl + "/tree/HEAD/" + extPath,
 };
