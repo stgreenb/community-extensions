@@ -1,5 +1,6 @@
 import { cacheGet, cacheSet } from "./cache.js";
 import { DETECT_TTL_MS } from "./config.js";
+import { jsdelivrTreeLooksSane } from "./jsdelivr-sanity.js";
 
 const _flattenJsdelivr = (node, prefix, out) => {
   if (!node || !Array.isArray(node.files)) return out;
@@ -58,8 +59,11 @@ const github = {
     gitUrl: "https://github.com/" + path + ".git",
     displayUrl: "github.com/" + path,
   }),
-  getTree: async (loc) =>
-    (await _jsdelivrTree(loc.path)) || (await _githubApiTree(loc.path)),
+  getTree: async (loc) => {
+    const t = await _jsdelivrTree(loc.path);
+    if (t && (await jsdelivrTreeLooksSane(loc.path, t))) return t;
+    return await _githubApiTree(loc.path);
+  },
   rawUrl: (loc, tree, path) =>
     "https://cdn.jsdelivr.net/gh/" +
     loc.path +

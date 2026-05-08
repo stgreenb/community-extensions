@@ -27,7 +27,7 @@ export const TYPE_SINGULAR = {
   themes: "theme",
   engines: "engine",
   transports: "transport",
-  autocomplete: "autocomplete",
+  autocompletes: "autocomplete",
 };
 
 export const IMG_EXT = /\.(png|jpe?g|gif|webp|avif|svg)$/i;
