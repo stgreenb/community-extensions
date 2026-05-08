@@ -17,7 +17,7 @@ const _renderHeader = async (loc, pkg, tree) => {
   const avatar = await renderAvatar({
     src: _resolveRepoImage(pkg["repo-image"], loc, tree),
     label: pkg.name || loc.path,
-    sizeClass: "ade-store-img",
+    sizeClass: "dce-store-img",
   });
   const authorHtml = pkg.author ? " &middot; " + authorMarkup(pkg.author) : "";
   const tpl = await loadTmpl("store/header.html");
@@ -58,21 +58,21 @@ const _renderItemRow = async (loc, item) => {
 const _renderItemList = async (loc, items) => {
   if (!items.length) return "<p>No items in this category.</p>";
   const rows = await Promise.all(items.map((it) => _renderItemRow(loc, it)));
-  return '<ul class="ade-item-list">' + rows.join("") + "</ul>";
+  return '<ul class="dce-item-list">' + rows.join("") + "</ul>";
 };
 
 const _renderTabs = (typesPresent, items, pkg, activeKind) => {
-  const allActive = activeKind === "all" ? " ade-tab-active" : "";
+  const allActive = activeKind === "all" ? " dce-tab-active" : "";
   let html =
-    '<button type="button" class="ade-tab' +
+    '<button type="button" class="dce-tab' +
     allActive +
     '" data-kind="all">All (' +
     items.length +
     ")</button>";
   typesPresent.forEach((t) => {
-    const active = activeKind === t ? " ade-tab-active" : "";
+    const active = activeKind === t ? " dce-tab-active" : "";
     html +=
-      '<button type="button" class="ade-tab' +
+      '<button type="button" class="dce-tab' +
       active +
       '" data-kind="' +
       t +
@@ -113,7 +113,7 @@ export async function renderStoreView(containerEl, repoInput) {
   let activeKind = "all";
 
   function _wireTabs() {
-    containerEl.querySelectorAll(".ade-tab").forEach((btn) => {
+    containerEl.querySelectorAll(".dce-tab").forEach((btn) => {
       if (btn._adeTabWired) return;
       btn._adeTabWired = true;
       btn.addEventListener("click", () =>
@@ -126,26 +126,26 @@ export async function renderStoreView(containerEl, repoInput) {
     activeKind = kind;
     const subset =
       kind === "all" ? items : items.filter((it) => it._kind === kind);
-    const tabsEl = containerEl.querySelector("#ade-store-tabs");
+    const tabsEl = containerEl.querySelector("#dce-store-tabs");
     if (tabsEl)
       tabsEl.innerHTML = _renderTabs(typesPresent, items, data.pkg, activeKind);
-    const listEl = containerEl.querySelector("#ade-store-list");
+    const listEl = containerEl.querySelector("#dce-store-list");
     if (listEl) listEl.innerHTML = await _renderItemList(loc, subset);
-    const filterEl = containerEl.querySelector("#ade-store-filter");
+    const filterEl = containerEl.querySelector("#dce-store-filter");
     if (filterEl && filterEl.value) filterEl.dispatchEvent(new Event("input"));
     _wireTabs();
     wireCopyButtons();
   }
 
   function _wireFilter() {
-    const filterEl = containerEl.querySelector("#ade-store-filter");
+    const filterEl = containerEl.querySelector("#dce-store-filter");
     if (!filterEl) return;
     filterEl.addEventListener("input", () => {
       const q = filterEl.value.trim().toLowerCase();
-      const listEl = containerEl.querySelector("#ade-store-list");
+      const listEl = containerEl.querySelector("#dce-store-list");
       if (!listEl) return;
       Array.prototype.forEach.call(
-        listEl.querySelectorAll(".ade-item-row"),
+        listEl.querySelectorAll(".dce-item-row"),
         (row) => {
           const hay = (row.textContent || "").toLowerCase();
           row.style.display = !q || hay.indexOf(q) >= 0 ? "" : "none";
@@ -156,13 +156,13 @@ export async function renderStoreView(containerEl, repoInput) {
 
   containerEl.innerHTML =
     (await _renderHeader(loc, data.pkg, data.tree)) +
-    '<div class="ade-store-controls">' +
-    '<input id="ade-store-filter" class="ade-input" type="search" placeholder="Filter items..." autocomplete="off">' +
+    '<div class="dce-store-controls">' +
+    '<input id="dce-store-filter" class="dce-input" type="search" placeholder="Filter items..." autocomplete="off">' +
     "</div>" +
-    '<div id="ade-store-tabs" class="ade-tabs">' +
+    '<div id="dce-store-tabs" class="dce-tabs">' +
     _renderTabs(typesPresent, items, data.pkg, activeKind) +
     "</div>" +
-    '<div id="ade-store-list">' +
+    '<div id="dce-store-list">' +
     (await _renderItemList(loc, items)) +
     "</div>";
 

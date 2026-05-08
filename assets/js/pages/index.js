@@ -4,9 +4,9 @@ import { itemsAll } from "../utils/items.js";
 import { escape, renderAvatar } from "../ui/render.js";
 import { tmpl, loadTmpl } from "../utils/tmpl.js";
 
-const _nav = () => document.getElementById("ade-nav");
+const _nav = () => document.getElementById("dce-nav");
 
-const _skelId = (i) => "ade-nav-skel-" + i;
+const _skelId = (i) => "dce-nav-skel-" + i;
 
 async function _insertSkel(i) {
   const nav = _nav();
@@ -50,7 +50,7 @@ export async function loadSidebar(inputs, onStoreLoadedFn) {
       const avatarHtml = await renderAvatar({
         src: repoImg,
         label: data.pkg.name || loc.path,
-        sizeClass: "ade-nav-img",
+        sizeClass: "dce-nav-img",
       });
       const html = tmpl(navItemTpl, {
         href,
@@ -67,12 +67,12 @@ export async function loadSidebar(inputs, onStoreLoadedFn) {
 }
 
 export function setActiveNav(repoInput) {
-  document.querySelectorAll(".ade-nav-item").forEach((el) => {
-    el.classList.remove("ade-nav-active");
+  document.querySelectorAll(".dce-nav-item").forEach((el) => {
+    el.classList.remove("dce-nav-active");
   });
   if (!repoInput) return;
   const target = document.querySelector(
-    '.ade-nav-item[data-repo="' + CSS.escape(String(repoInput)) + '"]',
+    '.dce-nav-item[data-repo="' + CSS.escape(String(repoInput)) + '"]',
   );
-  if (target) target.classList.add("ade-nav-active");
+  if (target) target.classList.add("dce-nav-active");
 }

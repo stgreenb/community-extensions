@@ -17,12 +17,12 @@ const _parseHash = () => {
   };
 };
 
-const _mainEl = () => document.getElementById("ade-main");
+const _mainEl = () => document.getElementById("dce-main");
 
 function _closeSidebar() {
-  const sidebar = document.querySelector(".ade-sidebar");
-  const backdrop = document.getElementById("ade-backdrop");
-  if (sidebar) sidebar.classList.remove("ade-sidebar-open");
+  const sidebar = document.querySelector(".dce-sidebar");
+  const backdrop = document.getElementById("dce-backdrop");
+  if (sidebar) sidebar.classList.remove("dce-sidebar-open");
   if (backdrop) backdrop.style.display = "none";
 }
 
@@ -37,7 +37,7 @@ async function _renderWelcome() {
     );
     if (!r.ok) return;
     const md = await r.text();
-    const readmeEl = el.querySelector(".ade-welcome-readme");
+    const readmeEl = el.querySelector(".dce-welcome-readme");
     if (!readmeEl) return;
     readmeEl.innerHTML = window.marked
       ? window.marked.parse(md, { gfm: true, breaks: false })
@@ -74,12 +74,12 @@ async function boot() {
   injectThemeToggle();
   wireLightbox();
 
-  const refreshBtn = document.getElementById("ade-refresh");
+  const refreshBtn = document.getElementById("dce-refresh");
   if (refreshBtn) wireRefresh(refreshBtn);
 
   const inputs = await fetchStores();
 
-  const searchEl = document.getElementById("ade-search");
+  const searchEl = document.getElementById("dce-search");
   wireSearch(searchEl, _mainEl(), () => {
     if (searchEl) searchEl.value = "";
     navigate();
@@ -91,21 +91,21 @@ async function boot() {
     navigate();
   });
 
-  const burgerBtn = document.getElementById("ade-burger");
-  const backdrop = document.getElementById("ade-backdrop");
+  const burgerBtn = document.getElementById("dce-burger");
+  const backdrop = document.getElementById("dce-backdrop");
   if (burgerBtn) {
     burgerBtn.addEventListener("click", () => {
-      const sidebar = document.querySelector(".ade-sidebar");
+      const sidebar = document.querySelector(".dce-sidebar");
       if (!sidebar) return;
-      const opening = !sidebar.classList.contains("ade-sidebar-open");
-      sidebar.classList.toggle("ade-sidebar-open");
+      const opening = !sidebar.classList.contains("dce-sidebar-open");
+      sidebar.classList.toggle("dce-sidebar-open");
       if (backdrop) backdrop.style.display = opening ? "block" : "none";
     });
   }
   if (backdrop) backdrop.addEventListener("click", _closeSidebar);
 
   document.addEventListener("click", (e) => {
-    if (!e.target.closest(".ade-nav-item")) return;
+    if (!e.target.closest(".dce-nav-item")) return;
     _closeSidebar();
   });
 

@@ -1,6 +1,12 @@
 import { escape, hasFile, typeTag, authorMarkup } from "../ui/render.js";
 import { parseUrl } from "../utils/url.js";
-import { loadStore, fetchJSON, fetchText, rawUrl, sourceUrl } from "../utils/api.js";
+import {
+  loadStore,
+  fetchJSON,
+  fetchText,
+  rawUrl,
+  sourceUrl,
+} from "../utils/api.js";
 import { findItem, findScreenshots } from "../utils/items.js";
 import { renderMarkdown } from "../ui/markdown.js";
 import { initSlider } from "../ui/slider.js";
@@ -43,17 +49,13 @@ export async function renderExtensionView(containerEl, repoInput, extPath) {
   const item = findItem(data.pkg, cleanPath);
   if (!item) {
     containerEl.innerHTML = tmpl(errorTpl, {
-      message:
-        "Extension " +
-        escape(cleanPath) +
-        " not found in package.json.",
+      message: "Extension " + escape(cleanPath) + " not found in package.json.",
     });
     return;
   }
   document.title = (item.name || cleanPath) + " — Awesome degoog extensions";
 
-  const storeHref =
-    "#repo=" + encodeURIComponent(repoInput);
+  const storeHref = "#repo=" + encodeURIComponent(repoInput);
   const crumbsTpl = await loadTmpl("extension/crumbs.html");
   const crumbsHtml = tmpl(crumbsTpl, {
     storeHref: escape(storeHref),
@@ -63,12 +65,14 @@ export async function renderExtensionView(containerEl, repoInput, extPath) {
 
   const author = await _resolveAuthor(data, loc, cleanPath);
   const versionTagHtml = item.version
-    ? tmpl(await loadTmpl("common/version-tag.html"), { version: escape("v" + item.version) })
+    ? tmpl(await loadTmpl("common/version-tag.html"), {
+        version: escape("v" + item.version),
+      })
     : "";
   const authorHtml = author ? " &middot; " + authorMarkup(author) : "";
   const depsHtml =
     Array.isArray(item.dependencies) && item.dependencies.length
-      ? '<p class="ade-ext-deps">Dependencies: ' +
+      ? '<p class="dce-ext-deps">Dependencies: ' +
         item.dependencies
           .map((d) => "<code>" + escape(d) + "</code>")
           .join(", ") +
@@ -88,16 +92,16 @@ export async function renderExtensionView(containerEl, repoInput, extPath) {
 
   containerEl.innerHTML =
     crumbsHtml +
-    '<div class="ade-ext-head">' +
+    '<div class="dce-ext-head">' +
     extHeaderHtml +
     "</div>" +
-    '<section id="ade-screenshots" aria-label="Screenshots" hidden></section>' +
-    '<section id="ade-readme" class="ade-readme" aria-label="README" hidden></section>' +
-    '<p id="ade-no-readme" class="ade-no-readme" hidden>No <code>README.md</code> for this extension.</p>';
+    '<section id="dce-screenshots" aria-label="Screenshots" hidden></section>' +
+    '<section id="dce-readme" class="dce-readme" aria-label="README" hidden></section>' +
+    '<p id="dce-no-readme" class="dce-no-readme" hidden>No <code>README.md</code> for this extension.</p>';
 
-  const shots = containerEl.querySelector("#ade-screenshots");
-  const readme = containerEl.querySelector("#ade-readme");
-  const noReadme = containerEl.querySelector("#ade-no-readme");
+  const shots = containerEl.querySelector("#dce-screenshots");
+  const readme = containerEl.querySelector("#dce-readme");
+  const noReadme = containerEl.querySelector("#dce-no-readme");
 
   const screenshots = findScreenshots(data.tree.paths, cleanPath);
   if (screenshots.length) {

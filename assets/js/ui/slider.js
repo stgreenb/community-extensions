@@ -5,27 +5,27 @@ export const initSlider = (container, urls) => {
     return;
   }
   container.hidden = false;
-  container.classList.add("ade-slider");
+  container.classList.add("dce-slider");
   const stage = document.createElement("div");
-  stage.className = "ade-slider-stage";
+  stage.className = "dce-slider-stage";
   const img = document.createElement("img");
   img.alt = "";
   img.loading = "lazy";
   stage.appendChild(img);
   const prev = document.createElement("button");
   prev.type = "button";
-  prev.className = "ade-slider-nav ade-slider-prev";
+  prev.className = "dce-slider-nav dce-slider-prev";
   prev.setAttribute("aria-label", "Previous screenshot");
   prev.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
   const next = document.createElement("button");
   next.type = "button";
-  next.className = "ade-slider-nav ade-slider-next";
+  next.className = "dce-slider-nav dce-slider-next";
   next.setAttribute("aria-label", "Next screenshot");
   next.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
   const counter = document.createElement("span");
-  counter.className = "ade-slider-counter";
+  counter.className = "dce-slider-counter";
   const dots = document.createElement("div");
-  dots.className = "ade-slider-dots";
+  dots.className = "dce-slider-dots";
   container.appendChild(prev);
   container.appendChild(stage);
   container.appendChild(next);
@@ -52,14 +52,14 @@ export const initSlider = (container, urls) => {
   urls.forEach((_u, i) => {
     const d = document.createElement("button");
     d.type = "button";
-    d.className = "ade-slider-dot";
+    d.className = "dce-slider-dot";
     d.setAttribute("aria-label", "Go to screenshot " + (i + 1));
     d.addEventListener("click", () => go(i));
     dots.appendChild(d);
   });
 
   img.addEventListener("click", () => {
-    const dlg = document.getElementById("ade-lightbox");
+    const dlg = document.getElementById("dce-lightbox");
     if (!dlg) return;
     const lb = dlg.querySelector("img");
     lb.src = img.src;
@@ -76,9 +76,9 @@ export const initSlider = (container, urls) => {
 };
 
 export const wireLightbox = () => {
-  const dlg = document.getElementById("ade-lightbox");
+  const dlg = document.getElementById("dce-lightbox");
   if (!dlg) return;
-  const close = dlg.querySelector(".ade-lightbox-close");
+  const close = dlg.querySelector(".dce-lightbox-close");
   if (close) close.addEventListener("click", () => dlg.close());
   dlg.addEventListener("click", (e) => {
     if (e.target === dlg) dlg.close();

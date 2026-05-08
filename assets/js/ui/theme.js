@@ -33,7 +33,7 @@ export const applyTheme = () => {
 };
 
 export function injectThemeToggle() {
-  const btn = document.getElementById("ade-theme-toggle");
+  const btn = document.getElementById("dce-theme-toggle");
   if (!btn) return;
   btn.addEventListener("click", () => {
     const next = _currentTheme() === "dark" ? "light" : "dark";

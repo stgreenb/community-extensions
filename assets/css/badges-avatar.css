@@ -1,19 +1,19 @@
-.ade-tag {
-  font-size: var(--ade-font-11);
-  padding: var(--ade-space-1) var(--ade-space-6);
-  border: var(--ade-border-w) solid currentColor;
+.dce-tag {
+  font-size: var(--dce-font-11);
+  padding: var(--dce-space-1) var(--dce-space-6);
+  border: var(--dce-border-w) solid currentColor;
   vertical-align: middle;
   font-weight: 500;
   text-transform: lowercase;
   display: inline-block;
 }
 
-.ade-avatar {
+.dce-avatar {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: hsl(var(--ade-h, 220) 50% 45%);
+  background: hsl(var(--dce-h, 220) 50% 45%);
   color: #fff;
   font-weight: 700;
   font-family:
@@ -24,7 +24,7 @@
   flex-shrink: 0;
 }
 
-.ade-avatar::before {
+.dce-avatar::before {
   content: attr(data-letter);
   position: absolute;
   inset: 0;
@@ -34,7 +34,7 @@
   letter-spacing: 0.02em;
 }
 
-.ade-avatar img {
+.dce-avatar img {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -43,14 +43,14 @@
   display: block;
 }
 
-.ade-card-img {
-  width: var(--ade-space-44);
-  height: var(--ade-space-44);
-  font-size: var(--ade-font-18);
+.dce-card-img {
+  width: var(--dce-space-44);
+  height: var(--dce-space-44);
+  font-size: var(--dce-font-18);
 }
 
-.ade-store-img {
-  width: var(--ade-space-72);
-  height: var(--ade-space-72);
-  font-size: var(--ade-font-28);
+.dce-store-img {
+  width: var(--dce-space-72);
+  height: var(--dce-space-72);
+  font-size: var(--dce-font-28);
 }

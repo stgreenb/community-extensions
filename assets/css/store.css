@@ -1,88 +1,88 @@
-.ade-store-head {
+.dce-store-head {
   margin-bottom: 1.25rem;
 }
 
-.ade-store-head-media {
+.dce-store-head-media {
   display: flex;
   align-items: flex-start;
-  gap: var(--ade-space-16);
+  gap: var(--dce-space-16);
   margin-bottom: 1rem;
 }
 
-.ade-store-head-content {
+.dce-store-head-content {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-.ade-store-title {
+.dce-store-title {
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: var(--ade-space-4);
+  margin-bottom: var(--dce-space-4);
 }
 
-.ade-store-meta {
-  font-size: var(--ade-font-13);
-  color: var(--ade-text-muted);
-  margin-bottom: var(--ade-space-6);
+.dce-store-meta {
+  font-size: var(--dce-font-13);
+  color: var(--dce-text-muted);
+  margin-bottom: var(--dce-space-6);
 }
 
-.ade-store-meta a {
-  color: var(--ade-text-muted);
+.dce-store-meta a {
+  color: var(--dce-text-muted);
 }
 
-.ade-store-meta a:hover {
-  color: var(--ade-text);
+.dce-store-meta a:hover {
+  color: var(--dce-text);
 }
 
-.ade-store-desc {
-  font-size: var(--ade-font-13);
-  color: var(--ade-text-muted);
+.dce-store-desc {
+  font-size: var(--dce-font-13);
+  color: var(--dce-text-muted);
 }
 
-.ade-store-git {
+.dce-store-git {
   display: flex;
   align-items: center;
   gap: 0;
-  border: var(--ade-border-w) solid var(--ade-border);
+  border: var(--dce-border-w) solid var(--dce-border);
   overflow: hidden;
 }
 
-.ade-git-label {
-  padding: var(--ade-space-5) var(--ade-space-10);
-  background: var(--ade-sidebar-bg);
-  border-right: var(--ade-border-w) solid var(--ade-border);
-  font-size: var(--ade-font-12);
-  color: var(--ade-text-muted);
+.dce-git-label {
+  padding: var(--dce-space-5) var(--dce-space-10);
+  background: var(--dce-sidebar-bg);
+  border-right: var(--dce-border-w) solid var(--dce-border);
+  font-size: var(--dce-font-12);
+  color: var(--dce-text-muted);
   flex-shrink: 0;
 }
 
-.ade-git-input {
+.dce-git-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: var(--ade-space-5) var(--ade-space-8);
+  padding: var(--dce-space-5) var(--dce-space-8);
   border: none;
-  background: var(--ade-surface);
-  color: var(--ade-text);
-  font-size: var(--ade-font-12);
+  background: var(--dce-surface);
+  color: var(--dce-text);
+  font-size: var(--dce-font-12);
   font-family: monospace;
   outline: none;
   text-overflow: ellipsis;
 }
 
-.ade-store-git .ade-btn {
+.dce-store-git .dce-btn {
   border: none;
-  border-left: var(--ade-border-w) solid var(--ade-border);
+  border-left: var(--dce-border-w) solid var(--dce-border);
   flex-shrink: 0;
 }
 
-.ade-store-controls {
+.dce-store-controls {
   display: flex;
   align-items: center;
-  gap: var(--ade-space-10);
+  gap: var(--dce-space-10);
   margin-bottom: 1rem;
 }
 
-.ade-store-controls .ade-input {
+.dce-store-controls .dce-input {
   flex: 1 1 auto;
   min-width: 0;
 }

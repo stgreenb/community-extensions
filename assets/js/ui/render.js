@@ -20,22 +20,22 @@ export const typeTag = async (kind) => {
 export const authorMarkup = (author) => {
   if (!author) return "";
   if (typeof author === "string")
-    return '<span class="ade-author">by ' + escape(author) + "</span>";
+    return '<span class="dce-author">by ' + escape(author) + "</span>";
   const name = escape(author.name || "");
   if (author.url) {
     return (
-      '<span class="ade-author">by <a href="' +
+      '<span class="dce-author">by <a href="' +
       escape(author.url) +
       '" target="_blank" rel="noopener">' +
       name +
       "</a></span>"
     );
   }
-  return '<span class="ade-author">by ' + name + "</span>";
+  return '<span class="dce-author">by ' + name + "</span>";
 };
 
 export const hostBadge = (host) =>
-  '<span class="ade-host-badge">' + escape(host) + "</span>";
+  '<span class="dce-host-badge">' + escape(host) + "</span>";
 
 const _hashHue = (s) => {
   let h = 0;

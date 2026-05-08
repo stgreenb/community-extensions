@@ -1,25 +1,25 @@
-<div class="ade-store-head">
-  <div class="ade-store-head-media">
+<div class="dce-store-head">
+  <div class="dce-store-head-media">
     {{ avatar }}
-    <div class="ade-store-head-content">
-      <h2 class="ade-store-title">{{ name }}</h2>
-      <p class="ade-store-meta">
+    <div class="dce-store-head-content">
+      <h2 class="dce-store-title">{{ name }}</h2>
+      <p class="dce-store-meta">
         <a href="{{ webUrl }}" target="_blank" rel="noopener"
           >{{ displayUrl }}</a
         >{{ authorHtml }}
       </p>
-      <p class="ade-store-desc">{{ description }}</p>
+      <p class="dce-store-desc">{{ description }}</p>
     </div>
   </div>
-  <div class="ade-store-git">
-    <span class="ade-git-label">git</span
+  <div class="dce-store-git">
+    <span class="dce-git-label">git</span
     ><input
-      class="ade-git-input"
+      class="dce-git-input"
       type="text"
       readonly
       value="{{ gitUrl }}"
       onclick="this.select()"
-    /><button type="button" class="ade-btn" data-copy="{{ gitUrl }}">
+    /><button type="button" class="dce-btn" data-copy="{{ gitUrl }}">
       Copy
     </button>
   </div>
