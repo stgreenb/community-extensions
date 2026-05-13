@@ -4,9 +4,7 @@ import { DETECT_TTL_MS } from "./config.js";
 const _githubApiTree = async (path) => {
   try {
     const r = await fetch(
-      "https://api.github.com/repos/" +
-      path +
-      "/git/trees/HEAD?recursive=1",
+      "https://api.github.com/repos/" + path + "/git/trees/HEAD?recursive=1",
       { headers: { accept: "application/vnd.github+json" } }
     );
     if (!r.ok) return null;
@@ -15,7 +13,7 @@ const _githubApiTree = async (path) => {
       .filter((e) => e.type === "blob")
       .map((e) => e.path);
     if (!paths.length) return null;
-    return { paths, ref: "HEAD", sha: data.sha || null };
+    return { paths, ref: data.sha || "HEAD", sha: data.sha || null };
   } catch (_e) {
     return null;
   }
@@ -32,17 +30,13 @@ const github = {
     displayUrl: "github.com/" + path,
   }),
   getTree: (loc) => _githubApiTree(loc.path),
-  rawUrl: (loc, tree, path) => {
-    const url =
-      "https://cdn.jsdelivr.net/gh/" +
-      loc.path +
-      "@" +
-      ((tree && tree.ref) || "HEAD") +
-      "/" +
-      path.replace(/^\/+/, "");
-    const v = tree && tree.sha ? encodeURIComponent(tree.sha) : "";
-    return v ? url + "?v=" + v : url;
-  },
+  rawUrl: (loc, tree, path) =>
+    "https://raw.githubusercontent.com/" +
+    loc.path +
+    "/" +
+    ((tree && tree.ref) || "HEAD") +
+    "/" +
+    path.replace(/^\/+/, ""),
   sourceUrl: (loc, _tree, extPath) =>
     loc.webUrl + "/tree/HEAD/" + extPath,
 };
