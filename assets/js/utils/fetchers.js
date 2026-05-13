@@ -1,33 +1,5 @@
 import { cacheGet, cacheSet } from "./cache.js";
 import { DETECT_TTL_MS } from "./config.js";
-import { jsdelivrTreeLooksSane } from "./jsdelivr-sanity.js";
-
-const _flattenJsdelivr = (node, prefix, out) => {
-  if (!node || !Array.isArray(node.files)) return out;
-  node.files.forEach((f) => {
-    const p = prefix ? prefix + "/" + f.name : f.name;
-    if (f.type === "directory") _flattenJsdelivr(f, p, out);
-    else out.push(p);
-  });
-  return out;
-};
-
-const _jsdelivrTree = async (path) => {
-  const refs = ["main", "master"];
-  for (const ref of refs) {
-    try {
-      const r = await fetch(
-        "https://data.jsdelivr.com/v1/packages/gh/" + path + "@" + ref,
-        { headers: { accept: "application/json" } }
-      );
-      if (!r.ok) continue;
-      const data = await r.json();
-      const paths = _flattenJsdelivr(data, "", []);
-      if (paths.length) return { paths, ref, sha: null };
-    } catch (_e) { }
-  }
-  return null;
-};
 
 const _githubApiTree = async (path) => {
   try {
@@ -59,11 +31,7 @@ const github = {
     gitUrl: "https://github.com/" + path + ".git",
     displayUrl: "github.com/" + path,
   }),
-  getTree: async (loc) => {
-    const t = await _jsdelivrTree(loc.path);
-    if (t && (await jsdelivrTreeLooksSane(loc.path, t))) return t;
-    return await _githubApiTree(loc.path);
-  },
+  getTree: (loc) => _githubApiTree(loc.path),
   rawUrl: (loc, tree, path) => {
     const url =
       "https://cdn.jsdelivr.net/gh/" +
